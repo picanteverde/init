@@ -3,12 +3,12 @@
   "version": "0.0.1",
   "author": "Picanteverde <picanteverde@gmail.com>",
   "description": "a simple description",
-  "contributors": [ 
+  "contributors": [
     {
       "name": "Alejandro Hernandez",
       "email": "picanteverde@gmail.com",
       "web": "http://picanteverde.wordpress.com/"
-    } 
+    }
   ],
   "repository": {
     "type": "git",
@@ -19,9 +19,10 @@
     "node",
     "app"
   ],
-  "dependencies" : {
-  },
+  "dependencies": {},
   "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-jshint": "~0.3.0"
   },
   "license": "MIT",
   "engines": {
