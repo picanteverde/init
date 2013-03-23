@@ -1,0 +1,30 @@
+{
+  "name": "app-name",
+  "version": "0.0.1",
+  "author": "Picanteverde <picanteverde@gmail.com>",
+  "description": "a simple description",
+  "contributors": [ 
+    {
+      "name": "Alejandro Hernandez",
+      "email": "picanteverde@gmail.com",
+      "web": "http://picanteverde.wordpress.com/"
+    } 
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/picanteverde/init.git"
+  },
+  "keywords": [
+    "init",
+    "node",
+    "app"
+  ],
+  "dependencies" : {
+  },
+  "devDependencies": {
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=0.6"
+  }
+}
