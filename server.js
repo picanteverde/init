@@ -1,6 +1,7 @@
-var express = require('express'),
+var express = require("express"),
+	routes = require("./routes.js"),
 	app = express(),
-	port = process.env.PORT || 5000.
+	port = process.env.PORT || 5000,
 	public_dir = process.env.PUBLIC_DIR || "public";
 
 app.configure(function(){
@@ -25,13 +26,7 @@ app.configure("development", function() {
     }));
 });
 
-app.get('/', function(req, res){
-  var body = 'Hello World';
-  res.setHeader('Content-Type', 'text/plain');
-  res.setHeader('Content-Length', body.length);
-  res.end(body);
-});
+routes.load(app);
 
 app.listen(port);
 console.log("App listening on port: " + port);
-
