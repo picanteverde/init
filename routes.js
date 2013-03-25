@@ -3,7 +3,7 @@
 
 	module.exports = {
 		load: function(app){
-			app.get("/", simple.helloWorld);
+			app.get("/hello", simple.helloWorld);
 		}
 	};
 }());
