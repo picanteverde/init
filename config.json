@@ -3,5 +3,10 @@
 		"port": 5000,
 		"public_dir": "public"
 	},
-	"dbs": {}
+	"dbs": {
+		"users": {
+			"type": "postgres",
+			"url": "tcp://postgres@localhost/example"
+		}
+	}
 }
