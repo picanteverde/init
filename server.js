@@ -36,7 +36,7 @@ dbs.connect(config.dbs, function(errs, clients){
 			console.log("Error: db[" + db + "] " + errs[db]);
 		}
 	}else{
-		routes.load(app);
+		routes.load(app, clients);
 		app.listen(config.server.port);
 		console.log("App listening on port: " + config.server.port);
 	}
