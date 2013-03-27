@@ -3,11 +3,11 @@
 		mongo = require("mongodb"),
 		connectTo = function(name, conn, error, success){
 			var drv,
-				cb = function(err, client){
+				cb = function(err, client, done){
 						if(err){
 							error(name, err);
 						}else{
-							success(name, client);
+							success(name, client, done);
 						}
 					};
 			switch(conn.type){
@@ -31,9 +31,10 @@
 				error = function(name, err){
 					errors[name] = err;
 				},
-				success = function (name, client){
+				success = function (name, client, done){
 					j += 1;
 					clients[name] = client;
+					client.done = done;
 					if(j === i){
 						clearTimeout(timeout);
 						cb(null, clients);
