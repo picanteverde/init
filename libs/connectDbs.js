@@ -27,6 +27,7 @@
 				j = 0,
 				clients = {},
 				errors = {},
+				timeout,
 				error = function(name, err){
 					errors[name] = err;
 				},
@@ -34,6 +35,7 @@
 					j += 1;
 					clients[name] = client;
 					if(j === i){
+						clearTimeout(timeout);
 						cb(null, clients);
 					}
 				};
@@ -47,7 +49,7 @@
 				i += 1;
 				connectTo(db, dbs[db], error, success);
 			}
-			setTimeout(function(){
+			timeout = setTimeout(function(){
 				if(Object.keys(errors).length === 0){
 					errors = null;
 				}
