@@ -1,0 +1,6 @@
+{
+	"server":{
+		"port": 5000,
+		"public_dir": "public"
+	}
+}

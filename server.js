@@ -1,8 +1,9 @@
-var express = require("express"),
+var config = require("./config.json"),
+	express = require("express"),
 	routes = require("./routes.js"),
 	app = express(),
-	port = process.env.PORT || 5000,
-	public_dir = process.env.PUBLIC_DIR || "public";
+	port = process.env.PORT || config.server.port,
+	public_dir = process.env.PUBLIC_DIR || config.server.public_dir;
 
 app.configure(function(){
 

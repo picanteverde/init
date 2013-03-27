@@ -36,6 +36,7 @@ module.exports = function(grunt) {
                   "Gruntfile.js",
                   "server.js",
                   "routes.js",
+                  "config.json",
                   "components/**/*.js"
                 ]
             }
