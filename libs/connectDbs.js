@@ -1,6 +1,7 @@
 (function(){
 	var pg = require("pg"),
 		mongo = require("mongodb"),
+		mock = require("./mockDb"),
 		connectTo = function(name, conn, error, success){
 			var drv,
 				cb = function(err, client, done){
@@ -16,6 +17,9 @@
 					break;
 				case "mongodb":
 					drv = mongo.Db.connect(conn.url, cb);
+					break;
+				case "mock":
+					drv = mock.connect(conn.url, cb);
 					break;
 			}
 		};
