@@ -38,6 +38,9 @@ var exports = module.exports = (function(){
 								db[key] = value;
 								this.save(cb);
 							}
+						},
+						getDb: function(){
+							return db;
 						}
 					};
 
