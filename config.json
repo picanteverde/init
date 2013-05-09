@@ -3,5 +3,10 @@
 		"port": 5000,
 		"public_dir": "public"
 	},
-	"dbs": {}
+	"dbs": {
+		"sampleUsers": {
+			"type": "mock",
+			"url": "file:./sampleUsers.db"
+		}
+	}
 }
