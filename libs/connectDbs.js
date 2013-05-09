@@ -31,7 +31,6 @@
 				j = 0,
 				clients = {},
 				errors = {},
-				timeout,
 				error = function(name, err){
 					errors[name] = err;
 				},
