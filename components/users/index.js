@@ -1,62 +1,68 @@
 (function(){
+	var userModel = require("./models/user");
 	module.exports = {
 		init: function(db){
 			var component = {
-					createUser: function(username, password, cb){
-						var errs = []
-						if(!username){
-							errs.push("username not defined");
-						}
-						if(!password){
-							errs.push("password not defined");
-						}
-						if(errs.length === 0){
-							db.kv(username, {
-								username: username,
-								password: password
-							},cb);
-						}else{
-							cb(errs);
-						}
+					createUser: function(user, cb){
+						userModel.validate(user, function(err, usr){
+							var user;
+							if(err){
+								cb(err);
+							}else{
+								user = userModel.normalize(usr);
+								if(db.kv(user.id)){
+									cb(["User already exists"]);
+								}else{
+									db.kv(user.id, user, cb);
+								}
+							}
+						});
 					},
 					listUsers: function(){
 						var users = db.getDb(),
 							user,
 							usersList = [];
 						for(user in users){
-							usersList.push(user);
+							usersList.push({
+								id: users[user].id,
+								username: users[user].username
+							});
 						}
 						return usersList;
 					}
 				},
 				api = {
-					createUser: function(req, res, next){
-						var username = req.body.username,
-							password = req.body.password;
-
-						if(username && password){
-							component.createUser(
-								username, 
-								password,
-								function(err){
-									if(err){
-										res.status(500);
-										res.json({
-											"error": err
-										});
-									}else{
-										res.json({
-											"username": username,
-											"password": password
-										});
-									}
-								});
-						}else{
-							res.status(500);
-							res.json({
-								"error": "Username and Password required"
+					postCreateUser: function(req, res, next){
+						component.createUser(
+							req.body,
+							function(err){
+								if(err){
+									res.status(500);
+									res.json({
+										"error": err
+									});
+								}else{
+									res.json({
+										"status": "ok"
+									});
+								}
 							});
-						}
+					},
+					getCreateUser: function(req, res, next){
+						component.createUser(
+							req.query,
+							function(err){
+								if(err){
+									res.status(500);
+									res.json({
+										"error": err
+									});
+								}else{
+									res.json({
+										"status": "ok"
+									});
+								}
+							});
 					},
 					listUsers: function(req, res, next){
 						res.json(component.listUsers());
