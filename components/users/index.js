@@ -1,11 +1,11 @@
 (function() {
 	var userModel = require("./models/user"),
-		API = require("../../libs/APICreator.js");
+		api = require("../../libs/APICreator.js");
 
 	module.exports = {
 		init: function(db) {
 			var component = {
-				createUser: function(user, cb) {
+				create: function(user, cb) {
 					userModel.validate(user, function(err, usr) {
 						var user;
 						if (err) {
@@ -20,7 +20,7 @@
 						}
 					});
 				},
-				listUsers: function(cb) {
+				list: function(cb) {
 					var users = db.getDb(),
 						user,
 						usersList = [];
@@ -31,10 +31,20 @@
 						});
 					}
 					cb(undefined, usersList);
+				},
+				del: function(user, cb){
+					var users;
+					user.id = user.id.toLowerCase();
+					users = db.getDb();
+					if(users[user.id]){
+						delete users[user.id];
+						db.save(cb);
+					}else{
+						cb();
+					}
 				}
-			},
-				api = API.createAPI(component);
-			component.api = api;
+			};
+			component.api = api.createAPI(component);
 			return component;
 		}
 	};

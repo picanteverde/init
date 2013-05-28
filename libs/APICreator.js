@@ -2,7 +2,8 @@
 	var getParamNames = function(func) {
 		var funStr = func.toString();
 		return funStr.slice(funStr.indexOf('(') + 1, funStr.indexOf(')')).match(/([^\s,]+)/g);
-	}, createAPI = function(component, options) {
+		},
+		createAPI = function(component, options) {
 			var API = {};
 			options = options || {};
 			if (!component) {

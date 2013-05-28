@@ -6,9 +6,10 @@
 		load: function(app, dbs) {
 			var users = Users.init(dbs["sampleUsers"]);
 
-			app.post("/createUser", users.api.createUser);
-			app.get("/createUser", users.api.createUser);
-			app.get("/listUsers", users.api.listUsers);
+			app.post("/createUser", users.api.create);
+			app.get("/createUser", users.api.create);
+			app.get("/listUsers", users.api.list);
+			app.get("/deleteUsers", users.api.del);
 			app.get("/hello", simple.helloWorld);
 		}
 	};
