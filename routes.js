@@ -8,8 +8,10 @@
 
 			app.post("/createUser", users.api.create);
 			app.get("/createUser", users.api.create);
+			app.get("/readUser", users.api.read);
+			app.get("/updateUser", users.api.update);
+			app.get("/deleteUser", users.api.del);
 			app.get("/listUsers", users.api.list);
-			app.get("/deleteUsers", users.api.del);
 			app.get("/hello", simple.helloWorld);
 		}
 	};

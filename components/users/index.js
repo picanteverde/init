@@ -20,6 +20,43 @@
 						}
 					});
 				},
+				read: function(user, cb){
+					var usr = db.kv(user.id);
+					if(!usr){
+						cb(["User not found"]);
+					}else{
+						cb(undefined, usr);
+					}
+				},
+				update: function(user, cb){
+					userModel.validateUpdate(user, function(err, usr){
+						var user;
+						if(err){
+							cb(err);
+						}else{
+							user = userModel.normalize(usr);
+							if(user.id !== usr.oldId){
+								if(db.kv(user.id)){
+									cb(["User already exists"]);
+								}else{
+									db.del(usr.oldId, function(err){
+										if(err){
+											cb(err);
+										}else{
+											db.kv(user.id, user, cb);
+										}
+									});
+								}
+							}else{
+								db.kv(user.id, user, cb);
+							}
+						}
+					});
+				},
+				del: function(user, cb){
+					user.id = user.id.toLowerCase();
+					db.del(user.id, cb);
+				},
 				list: function(cb) {
 					var users = db.getDb(),
 						user,
@@ -31,17 +68,6 @@
 						});
 					}
 					cb(undefined, usersList);
-				},
-				del: function(user, cb){
-					var users;
-					user.id = user.id.toLowerCase();
-					users = db.getDb();
-					if(users[user.id]){
-						delete users[user.id];
-						db.save(cb);
-					}else{
-						cb();
-					}
 				}
 			};
 			component.api = api.createAPI(component);

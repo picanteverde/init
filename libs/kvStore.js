@@ -39,6 +39,10 @@ var exports = module.exports = (function(){
 								this.save(cb);
 							}
 						},
+						del: function(key, cb){
+							delete db[key];
+							this.save(cb);
+						},
 						getDb: function(){
 							return db;
 						}
