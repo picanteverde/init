@@ -1,6 +1,6 @@
 (function() {
 	var simple = require("./components/simple/routes.js"),
-		middlewarize = require("../../libs/APICreator.js"),
+		middlewarize = require("./libs/APICreator.js"),
 		Users = require("./components/users/index.js"),
 		RestfulAuth = require("./components/restfulauth/index.js");
 
@@ -8,7 +8,7 @@
 		load: function(app, dbs) {
 			var users = Users.init(dbs["sampleUsers"]),
 				restfulauth = RestfulAuth.init(users);
-				
+
 			users.api = middlewarize.createAPI(users);
 
 			app.post("/createUser", users.api.create);
