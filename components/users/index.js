@@ -1,5 +1,6 @@
 (function() {
-	var userModel = require("./models/user"),
+	var JsSHA = require('../../libs/sha1'),
+		userModel = require("./models/user"),
 		api = require("../../libs/APICreator.js");
 
 	module.exports = {
