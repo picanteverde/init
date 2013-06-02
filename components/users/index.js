@@ -1,11 +1,9 @@
 (function() {
-	var JsSHA = require('../../libs/sha1'),
-		userModel = require("./models/user"),
-		api = require("../../libs/APICreator.js");
+	var userModel = require("./models/user");
 
 	module.exports = {
 		init: function(db) {
-			var component = {
+			return {
 				create: function(user, cb) {
 					userModel.validate(user, function(err, usr) {
 						var user;
@@ -69,10 +67,11 @@
 						});
 					}
 					cb(undefined, usersList);
+				},
+				getPrivateKey: function(publicKey, cb){
+					cb(undefined, db.kv(publicKey).password);
 				}
 			};
-			component.api = api.createAPI(component);
-			return component;
 		}
 	};
 }());
