@@ -1,6 +1,6 @@
 var exports = module.exports = (function(){
 	var fs = require("fs"),
-	 	dbs = {};
+		dbs = {};
 
 	return {
 		connectDb: function (path, cb){

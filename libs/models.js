@@ -50,7 +50,7 @@
 		};
 	module.exports = {
 		check: function(obj){
-			this.errors = [];
+			var errors = [];
 			errors.obj = obj;
 			errors.e = cheking.e;
 			errors.notFalsy = cheking.notFalsy;
