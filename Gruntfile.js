@@ -28,7 +28,13 @@ module.exports = function(grunt) {
                     __filename: true,
                     __dirname: true,
                     module: true,
-                    exports:true
+                    exports:true,
+                    //for Browser
+                    Backbone: true,
+                    window: true,
+                    alert: true,
+                    $: true,
+                    demo: true //name space
                 }
             },
             files: {
@@ -38,11 +44,30 @@ module.exports = function(grunt) {
                   "routes.js",
                   "config.json",
                   "libs/**/*.js",
-                  "components/**/*.js"
+                  "components/**/*.js",
+                  "src/client/spa/**/*.js"
                 ]
             }
         },
     concat: {
+        spa: {
+            src: [
+                "src/client/spa/namespace.js",
+                "src/client/spa/Hello.js",
+                "src/client/spa/Menu.js",
+                "src/client/spa/Layout.js",
+                "src/client/spa/App.js",
+                "src/client/spa/main.js"
+            ],
+            dest: "build/spa.js"
+        },
+        main: {
+            src:[
+                "build/templates.js",
+                "build/spa.js"
+            ],
+            dest: "public/js/spa/main.js"
+        },
         bootstrap: {
             src: [
                 'src/client/styles/bootstrap/js/bootstrap-affix.js',
@@ -69,6 +94,19 @@ module.exports = function(grunt) {
             }
         }
     },
+    jst: {
+        compile:{
+            options:{
+                prettify: true,
+                processName: function(longPath){
+                    return longPath.substr(25);
+                }
+            },
+            files:{
+                "build/templates.js": ["src/client/spa/templates/**/*.html"]
+            }
+        }
+    },
     less: {
         bootstrap: {
             files: {
@@ -91,13 +129,14 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
+  grunt.loadNpmTasks('grunt-contrib-jst');
 
 
   // Default task(s).
   grunt.registerTask(
-    'default', 
+    "default", 
     [
-      'jshint'
+      "jshint", "jst", "concat:spa", "concat:main"
     ]);
 
 };
