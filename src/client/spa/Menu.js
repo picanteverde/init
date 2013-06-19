@@ -6,6 +6,8 @@ demo.Menu = Backbone.Marionette.ItemView.extend({
 		"click li": "alertit"
 	},
 	alertit: function(e){
-		alert($(e.target).html());
+		if(e.target.className === "login"){
+			demo.app.showLoginForm();
+		}
 	}
 });
