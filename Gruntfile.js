@@ -34,7 +34,8 @@ module.exports = function(grunt) {
                     window: true,
                     alert: true,
                     $: true,
-                    demo: true //name space
+                    demo: true, //name space,
+                    JsSHA: true
                 }
             },
             files: {
@@ -55,6 +56,7 @@ module.exports = function(grunt) {
                 "src/client/spa/namespace.js",
                 "src/client/spa/Hello.js",
                 "src/client/spa/Menu.js",
+                "src/client/spa/Login.js",
                 "src/client/spa/Layout.js",
                 "src/client/spa/App.js",
                 "src/client/spa/main.js"
