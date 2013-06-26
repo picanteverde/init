@@ -69,7 +69,13 @@
 					cb(undefined, usersList);
 				},
 				getPrivateKey: function(publicKey, cb){
-					cb(undefined, db.kv(publicKey).password);
+					var user = db.kv(publicKey);
+					if(user){
+						cb(undefined, user.password);	
+					}else{
+						cb(["User don't exists"]);
+					}
+					
 				}
 			};
 		}
