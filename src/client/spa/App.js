@@ -8,6 +8,9 @@ demo.App = Backbone.Marionette.Application.extend({
 	showLoginForm: function(){
 		this.layout.content.show(new demo.Login());
 	},
+	showHome: function(){
+		this.layout.content.show(new demo.Hello());
+	},
 	login: function(username, password, cbError, cbSuccess){
 		var app = this,
 			rnd = Math.random() * 1000,

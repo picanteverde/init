@@ -3,15 +3,19 @@ demo.Login = Backbone.Marionette.ItemView.extend({
 		return window.JST["login.html"];
 	},
 	events:{
-		"click input.btn.login": "login"
+		"click button.btn.login": "login"
 	},
 	ui: {
 		username: "input.username",
 		password: "input.password",
 		message: "div.message"
 	},
-	login: function(){
+	onShow: function(){
+		this.ui.username.focus();
+	},
+	login: function(e){
 		var that = this;
+		e.preventDefault();
 		demo.app.login(
 			this.ui.username.val(),
 			this.ui.password.val(),

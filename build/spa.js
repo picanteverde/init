@@ -9,11 +9,24 @@ demo.Menu = Backbone.Marionette.ItemView.extend({
 		return window.JST["menu.html"];
 	},
 	events:{
-		"click li": "alertit"
+		"click li": "goto"
 	},
-	alertit: function(e){
-		if(e.target.className === "login"){
-			demo.app.showLoginForm();
+	onRender: function(){
+		this.menuOpts = this.$el.find("ul.nav li");
+	},
+	goto: function(e){
+		var elem = this.$(e.target),
+			option = elem.attr("href").substr(1);
+		e.preventDefault();
+		this.menuOpts.removeClass("active");
+		elem.parent().addClass("active");
+		switch(option){
+			case "login":
+				demo.app.showLoginForm();
+				break;
+			case "home":
+				demo.app.showHome();
+				break;
 		}
 	}
 });
@@ -22,15 +35,19 @@ demo.Login = Backbone.Marionette.ItemView.extend({
 		return window.JST["login.html"];
 	},
 	events:{
-		"click input.btn.login": "login"
+		"click button.btn.login": "login"
 	},
 	ui: {
 		username: "input.username",
 		password: "input.password",
 		message: "div.message"
 	},
-	login: function(){
+	onShow: function(){
+		this.ui.username.focus();
+	},
+	login: function(e){
 		var that = this;
+		e.preventDefault();
 		demo.app.login(
 			this.ui.username.val(),
 			this.ui.password.val(),
@@ -60,6 +77,9 @@ demo.App = Backbone.Marionette.Application.extend({
 	},
 	showLoginForm: function(){
 		this.layout.content.show(new demo.Login());
+	},
+	showHome: function(){
+		this.layout.content.show(new demo.Hello());
 	},
 	login: function(username, password, cbError, cbSuccess){
 		var app = this,
