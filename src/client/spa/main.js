@@ -1,11 +1,15 @@
-demo.app = new demo.App();
+define(["spa/App"], function(App){
+	var app = new App();
 
-demo.app.addRegions({
-	"mainRegion": "#application"
+	app.addRegions({
+		"mainRegion": "#application"
+	});
+
+	app.addInitializer(function(){
+		this.init();
+	});
+
+	app.start();
+
+	return app;
 });
-
-demo.app.addInitializer(function(){
-	this.init();
-});
-
-demo.app.start();

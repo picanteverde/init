@@ -33,7 +33,9 @@
     "grunt-contrib-cssmin": "~0.5.0",
     "mocha": "~1.11.0",
     "chai": "~1.6.1",
-    "grunt-contrib-jst": "~0.5.0"
+    "grunt-contrib-jst": "~0.5.0",
+    "grunt-contrib-copy": "~0.4.1",
+    "grunt-contrib-clean": "~0.4.1"
   },
   "license": "MIT",
   "engines": {
