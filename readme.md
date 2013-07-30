@@ -1,6 +1,16 @@
-Initial Commits for App development with JavaScript in node.js
+Initial Template for App development with JavaScript in node.js
 ==============================================================
 
+## Init
+
+Init is a customizable set of templates for several technologies in JavaScript, including:
+ 
+ * [node.js](http://nodejs.org/)
+ * [express.js](http://expressjs.com/)
+ * [HTML 5 boilerplate](http://html5boilerplate.com/)
+ * [Twitter Bootstrap](http://getbootstrap.com/2.3.2/)
+ * [Backbone.js](http://backbonejs.org/)
+ * [Marionette.js](http://marionettejs.com/)
 
 ## How to Use It
 
@@ -12,57 +22,42 @@ Next lets add a git remote with the init repo
 
 	git remote add init git://github.com/picanteverde/init.git
 
-Afert that we have to option one is fetch all init branchs or just pull the branchs we want
+Afert that we pull the branches we need for example to have the latest version of the user manager
 
-So lets try to use marionettejs with twitter-bootstrap
-
-First we bring [marionettejs](http://marionettejs.com/) to our master branch
-
-	git pull init marionettejs
+	git pull init usermanager
 	
-Next we add another branch to our master in this case [twitter-bootstrap](http://twitter.github.io/bootstrap/)
+now you can start your application with a working environment
 
-	git pull init twitter-bootstrap
 
-Like in this case we can have some conflicts, that we are going to try to keep at minimum
-
-In this case we just have in the index.html the conflict with the js libraries so we just remove the git conflict lines 
-
-	<<<<<<< HEAD
-		<script src="js/vendor/underscore.js"></script>
-		<script src="js/vendor/backbone.js"></script>
-		<script src="js/vendor/backbone.marionette.js"></script>
-		<script src="js/spa/main.js"></script>
-	=======
-        <script src="js/vendor/bootstrap.min.js"></script>
-
-	>>>>>>> 13f0384e8f5b22f733b973497dd0d0cd5d411b94
-
-To
-
-		<script src="js/vendor/underscore.js"></script>
-		<script src="js/vendor/backbone.js"></script>
-		<script src="js/vendor/backbone.marionette.js"></script>
-		<script src="js/spa/main.js"></script>
-        <script src="js/vendor/bootstrap.min.js"></script>
-
-And then 
-
-	git add public/index.html
-
-To finish with a 
-
-	git commit
-
-Now you are ready to start with your project
+## Removing the init repo
 
 If you want you can delete the init remote
 
 	git remote remove init
-	
+
+## Starting the server
+
 To start the init application (you need [node and npm](http://nodejs.org/)) just do a
 
 	npm install
 	node server
 
 on the base folder 
+
+
+## Pushing your app to Heroku
+
+If you want to see your application working on Heroku pull the heroku-webprocess branch
+
+    git pull init heroku-webprocesss
+
+now, with the heroku [Toolbelt](https://devcenter.heroku.com/articles/nodejs) installed create the heroku app
+
+    heroku create
+
+For the next step make sure you added your .ssh pub key to your heroku account
+
+    git push heroku master
+
+you will be notified with the url of your app running on heroku cedar stack
+
