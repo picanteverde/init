@@ -22,7 +22,7 @@ Next lets add a git remote with the init repo
 
 	git remote add init git://github.com/picanteverde/init.git
 
-Afert that we pull the branches we need for example to have the latest version of the user manager
+After that we pull the branches we need for example to have the latest version of the user manager
 
 	git pull init usermanager
 	
