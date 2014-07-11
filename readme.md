@@ -14,7 +14,7 @@ Init is a customizable set of templates for several technologies in JavaScript, 
 
 ## How to Use It
 
-First we crate our repository (or we use our existing ones)
+First we create our repository (or we use our existing ones)
 
 	git init
 
